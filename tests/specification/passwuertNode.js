@@ -15,6 +15,6 @@ test(`hashPasswordWithRandomSalt resolves with hashed, salt, iterations`, async 
     return hashPasswordWithRandomSalt("a").then(value => {
         t.truthy(Object.hasOwn(value, "hashed"));
         t.truthy(Object.hasOwn(value, "salt"));
-        t.truthy(Object.hasOwn(value, "iteration"));
+        t.truthy(Object.hasOwn(value, "iterations"));
     });
 });

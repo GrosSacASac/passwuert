@@ -5,16 +5,13 @@ import {
     comparePasswordToHashed,
 } from "../../lib/passwuertNode.js";
 import {
-    hashPasswordLegacy,
-    hashPasswordWithRandomSaltLegacy,
-    comparePasswordToHashedLegacy,
-} from "../../lib/passwuertNode.js";
-
-
+    hashPassword as hashPasswordLegacy,
+    hashPasswordWithRandomSalt as hashPasswordWithRandomSaltLegacy,
+    comparePasswordToHashed as comparePasswordToHashedLegacy,
+} from "../../lib/passwuertNodeLegacy.js";
 
 
 const pass ="pass";
-
 
 
 test(`hashPasswordWithRandomSalt returns a promise`, t => {
