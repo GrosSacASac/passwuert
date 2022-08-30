@@ -28,7 +28,7 @@ import {
 
 ### Difference between passwuertNodeLegacy.js and passwuertNode.js
 
-passwuertNode.js imports passwuert.js which uses webcrypto. passwuertNodeLegacy uses custom Node.js specific functions that existed before.
+passwuertNode.js imports passwuert.js which uses webcrypto. passwuertNodeLegacy uses custom Node.js specific functions that existed before and the functions are sync.
 
 ### Changelog
 
