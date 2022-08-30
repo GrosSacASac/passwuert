@@ -9,6 +9,7 @@
   "deno": "lib/passwuert.js",
   "browser": "lib/passwuert.js",
   "scripts": {
+    "prepublishOnly": "npm t",
     "test": "ava",
     "lint-fix": "eslint --ignore-path .gitignore --fix .",
     "lint": "eslint --ignore-path .gitignore ."
