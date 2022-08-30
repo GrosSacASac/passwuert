@@ -6,7 +6,7 @@
 
 ## Usage
 
-
+[See example](https://github.com/GrosSacASac/passwuert/tree/main/example)
 
 ## passwuert.js
 
@@ -25,6 +25,10 @@ import {
 ```
 
 ## About
+
+### Difference between passwuertNodeLegacy.js and passwuertNode.js
+
+passwuertNode.js imports passwuert.js which uses webcrypto. passwuertNodeLegacy uses custom Node.js specific functions that existed before.
 
 ### Changelog
 
