@@ -2,3 +2,4 @@ node_modules
 lib/passwuert-notes.js
 lib/passwuert-l.js
 tests/performance/results.txt
+example/hashedPassword.json
