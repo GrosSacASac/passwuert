@@ -14,9 +14,6 @@ import {
 const pass = `pass`;
 
 
-test(`hashPasswordWithRandomSalt returns a promise`, t => {
-    t.is(typeof hashPasswordWithRandomSalt(`a`).then, `function`);
-});
 
 test(`legacy and webcrypto should do the same`, async t => {
     t.truthy(await comparePasswordToHashed(
