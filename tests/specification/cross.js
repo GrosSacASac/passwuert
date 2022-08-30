@@ -11,7 +11,7 @@ import {
 } from "../../lib/passwuertNodeLegacy.js";
 
 
-const pass = `pass`;
+const pass = `€Ereozuipeiopuzr@nigøƒ-♠•Í`;
 
 
 

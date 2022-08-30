@@ -10,6 +10,7 @@ import {
     comparePasswordToHashed as comparePasswordToHashedLegacy,
 } from "../../lib/passwuertNodeLegacy.js";
 
+const pass = `€Ereozuipeiopuzr@nigøƒ-♠•Í`;
 
 [
     {
@@ -35,5 +36,14 @@ import {
             t.truthy(Object.hasOwn(h, `hashed`));
             t.truthy(Object.hasOwn(h, `salt`));
             t.truthy(Object.hasOwn(h, `iterations`));
+        });
+
+        
+        test(`${name} passing the same password to comparePasswordToHashed, and hashPasswordWithRandomSalt should always return true returns  with hashed, salt, iterations`, async t => {
+            t.truthy(await comparePasswordToHashedImplementation(
+                pass,
+                await hashPasswordWithRandomSaltImplementation(pass)
+            ));
+            
         });
 });
