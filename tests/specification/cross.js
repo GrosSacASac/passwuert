@@ -11,17 +11,17 @@ import {
 } from "../../lib/passwuertNodeLegacy.js";
 
 
-const pass ="pass";
+const pass = `pass`;
 
 
 test(`hashPasswordWithRandomSalt returns a promise`, t => {
-    t.is(typeof hashPasswordWithRandomSalt("a").then, `function`);
+    t.is(typeof hashPasswordWithRandomSalt(`a`).then, `function`);
 });
 
 test(`legacy and webcrypto should do the same`, async t => {
     t.truthy(await comparePasswordToHashed(
         pass,
-        hashPasswordWithRandomSaltLegacy(pass)
+        hashPasswordWithRandomSaltLegacy(pass),
     ));
 
 });
@@ -29,7 +29,7 @@ test(`legacy and webcrypto should do the same`, async t => {
 test(`legacy and webcrypto should do the same reverse`, async t => {
     t.truthy(comparePasswordToHashedLegacy(
         pass,
-        await hashPasswordWithRandomSalt(pass)
+        await hashPasswordWithRandomSalt(pass),
     ));
 
 });

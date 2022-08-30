@@ -8,13 +8,13 @@ import {
 
 
 test(`hashPasswordWithRandomSalt returns a promise`, t => {
-    t.is(typeof hashPasswordWithRandomSalt("a").then, `function`);
+    t.is(typeof hashPasswordWithRandomSalt(`a`).then, `function`);
 });
 
 test(`hashPasswordWithRandomSalt resolves with hashed, salt, iterations`, async t => {
-    return hashPasswordWithRandomSalt("a").then(value => {
-        t.truthy(Object.hasOwn(value, "hashed"));
-        t.truthy(Object.hasOwn(value, "salt"));
-        t.truthy(Object.hasOwn(value, "iterations"));
+    return hashPasswordWithRandomSalt(`a`).then(value => {
+        t.truthy(Object.hasOwn(value, `hashed`));
+        t.truthy(Object.hasOwn(value, `salt`));
+        t.truthy(Object.hasOwn(value, `iterations`));
     });
 });
