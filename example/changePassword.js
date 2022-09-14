@@ -1,4 +1,3 @@
-// deno run --allow-write="./example/hashedPassword.json" ./example/changePassword.js
 import {hashPasswordWithRandomSalt} from "../lib/passwuert.js";
 
 const password = prompt("password to save");

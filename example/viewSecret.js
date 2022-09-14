@@ -1,5 +1,4 @@
 // run changePassword first
-// deno run --allow-read="./example/hashedPassword.json","./example/secret.txt" ./example/viewSecret.js
 import {comparePasswordToHashed} from "../lib/passwuert.js";
 
 const password = prompt("password");
