@@ -11,6 +11,7 @@ import {
 } from "../../lib/passwuertNodeLegacy.js";
 
 const pass = `€Ereozuipeiopuzr@nigøƒ-♠•Í`;
+const badPassword = `12345678`;
 
 [
     {
@@ -39,11 +40,26 @@ const pass = `€Ereozuipeiopuzr@nigøƒ-♠•Í`;
         });
 
         
-        test(`${name} passing the same password to comparePasswordToHashed, and hashPasswordWithRandomSalt should always return true returns  with hashed, salt, iterations`, async t => {
+        test(`${name} passing the same password to comparePasswordToHashed,
+        and hashPasswordWithRandomSalt should always return true`, async t => {
             t.truthy(await comparePasswordToHashedImplementation(
                 pass,
                 await hashPasswordWithRandomSaltImplementation(pass),
             ));
             
         });
+
+
+        test(`${name} comparePasswordToHashed should be false when comparing different passwords and salt`, t => {
+            t.false(comparePasswordToHashedImplementation(pass, hashPasswordWithRandomSaltImplementation(badPassword)));
+        });
+
+        test(`${name} comparePasswordToHashed should be false when comparing with same password and different salt`, t => {
+            const hashAndSaltA = hashPasswordWithRandomSaltImplementation(pass);
+            const hashAndSaltB = hashPasswordWithRandomSaltImplementation(pass);
+            t.false(comparePasswordToHashed(goodPassword, {
+                hashed: hashAndSaltA.hashed,
+                salt: hashAndSaltB.salt}));
+        });
+
 });
