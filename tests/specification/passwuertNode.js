@@ -13,6 +13,10 @@ import {
 const pass = `€Ereozuipeiopuzr@nigøƒ-♠•Í`;
 const badPassword = `12345678`;
 
+const promisifySyncFunction = (syncFunction) => (...x) => {
+    return Promise.resolve(syncFunction(...x));
+};
+
 [
     {
         hashPasswordImplementation: hashPassword,
@@ -21,9 +25,9 @@ const badPassword = `12345678`;
         name: `webcrypto`,
     },
     {
-        hashPasswordImplementation: hashPasswordLegacy,
-        hashPasswordWithRandomSaltImplementation: hashPasswordWithRandomSaltLegacy,
-        comparePasswordToHashedImplementation: comparePasswordToHashedLegacy,
+        hashPasswordImplementation: promisifySyncFunction(hashPasswordLegacy),
+        hashPasswordWithRandomSaltImplementation: promisifySyncFunction(hashPasswordWithRandomSaltLegacy),
+        comparePasswordToHashedImplementation: promisifySyncFunction(comparePasswordToHashedLegacy),
         name: `node legacy`,
     },
 ].forEach(({
@@ -50,16 +54,17 @@ const badPassword = `12345678`;
         });
 
 
-        test(`${name} comparePasswordToHashed should be false when comparing different passwords and salt`, t => {
-            t.false(comparePasswordToHashedImplementation(pass, hashPasswordWithRandomSaltImplementation(badPassword)));
+        test(`${name} comparePasswordToHashed should be false when comparing different passwords and salt`, async t => {
+            t.false(await comparePasswordToHashedImplementation(pass, await hashPasswordWithRandomSaltImplementation(badPassword)));
         });
 
-        test(`${name} comparePasswordToHashed should be false when comparing with same password and different salt`, t => {
-            const hashAndSaltA = hashPasswordWithRandomSaltImplementation(pass);
-            const hashAndSaltB = hashPasswordWithRandomSaltImplementation(pass);
-            t.false(comparePasswordToHashed(goodPassword, {
+        test(`${name} comparePasswordToHashed should be false when comparing with same password and different salt`,async t => {
+            const hashAndSaltA = await hashPasswordWithRandomSaltImplementation(pass);
+            const hashAndSaltB = await hashPasswordWithRandomSaltImplementation(pass);
+            t.false(await comparePasswordToHashed(pass, {
                 hashed: hashAndSaltA.hashed,
-                salt: hashAndSaltB.salt}));
+                salt: hashAndSaltB.salt
+            }));
         });
 
 });
